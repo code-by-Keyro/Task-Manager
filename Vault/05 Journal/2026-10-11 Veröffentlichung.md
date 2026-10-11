@@ -1,9 +1,24 @@
 # Öffentliche Quellfassung – 11. Oktober 2026
 
-Öffentliche Dokumentation zusammengestellt. Aktive und historische Quellen,
-Cargo-Dateien, Übersetzungskataloge, Buildskripte, Assets und Lizenznachweise sind
-übernommen. Personalisierte Installationsnotizen, Live-Logs und Screenshots sind
-aus dieser Quellfassung ausgeschlossen; die alte Git-Historie wird nicht übernommen.
-Die Datei-/Historien-/OCR-Prüfung fand keine erkennbaren Zugangsdaten. Eine solche
-Prüfung garantiert nicht das Fehlen beliebig verschleierter Geheimnisse.
-Kein GitHub-Upload und keine erneuten Anwendungs-/GUI-Tests für diesen Export.
+Die Quellfassung 0.12.1 ist auf
+[GitHub](https://github.com/code-by-Keyro/Task-Manager) veröffentlicht.
+Aktive und historische Quellen, Cargo-Dateien, Übersetzungskataloge, Buildskripte,
+Assets und Lizenznachweise wurden übernommen. Persönliche Installationsnotizen,
+Live-Logs und Rechner-Screenshots sind ausgeschlossen. Eine eigene öffentliche
+Git-Historie verhindert, dass frühere private Anhänge mit veröffentlicht werden.
+
+Die erste Veröffentlichung umfasst 65 Dateien; Dateipfade, Blob-Hashes und
+Ausführungsrechte wurden gegen den bereinigten Export geprüft. Öffentliche
+Commit-Metadaten verwenden GitHub-No-Reply-Adressen. Die Datei-/Historien-/OCR-
+Prüfung fand keine erkennbaren Zugangsdaten. Sie garantiert nicht das Fehlen
+beliebig verschleierter Geheimnisse.
+
+Anschließend wurde die README als Einstieg für Repository-Besucher überarbeitet:
+aktuelle Funktionen, Bauen/Starten, Sprache, Plattformgrenzen und Dokumentation.
+Der ausgewählte öffentliche Vault bleibt als Entwicklungswissen erhalten;
+seine Verweise sind als normale Markdown-Links auf GitHub nutzbar.
+
+Für Export und Dokumentationspflege wurden keine neuen Anwendungs-/GUI-Tests
+oder Release-Builds ausgeführt. Ein fertiges Binärpaket ist noch nicht veröffentlicht.
+
+Zurück: [Projektwissen](../Start.md).

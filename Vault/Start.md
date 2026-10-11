@@ -1,12 +1,19 @@
-# Task-Manager – öffentlicher Projekt-Vault
+# Task-Manager – Projektwissen
 
-Diese Auswahl enthält allgemeine Projektdokumentation für die öffentliche
-Quellfassung. Testnachweise mit realen Benutzer- oder Rechnerdaten werden privat
-verwahrt. Geplante, umgesetzte und geprüfte Ergebnisse bleiben unterscheidbar.
+Diese Auswahl dokumentiert die öffentliche Quellfassung des Linux-Task-Managers.
+Sie enthält allgemeines Entwicklungswissen und offene Prüfungen. Persönliche
+Installationsnotizen, reale Rechnerberichte und private Testanhänge bleiben
+außerhalb des öffentlichen Repositorys.
 
-- [[01 Projekt/Projektübersicht]]
-- [[02 Entwicklung/Architektur]]
-- [[02 Entwicklung/Build und Tests]]
-- [[02 Entwicklung/Entscheidungen]]
-- [[03 Planung/Aufgaben]]
-- [[05 Journal/2026-10-11 Veröffentlichung]]
+| Thema | Dokumentation |
+| --- | --- |
+| Funktionen und Messwerte | [Projektübersicht](01%20Projekt/Projekt%C3%BCbersicht.md) |
+| Module und Hintergrund-Worker | [Architektur](02%20Entwicklung/Architektur.md) |
+| Voraussetzungen und Prüfungen | [Build und Tests](02%20Entwicklung/Build%20und%20Tests.md) |
+| Technische Entscheidungen | [Entscheidungen](02%20Entwicklung/Entscheidungen.md) |
+| Noch offene Prüfungen | [Aufgaben](03%20Planung/Aufgaben.md) |
+| Öffentliche Quellfassung | [Veröffentlichung](05%20Journal/2026-10-11%20Ver%C3%B6ffentlichung.md) |
+
+Die Dateien lassen sich auf GitHub lesen oder über **Ordner als Vault öffnen**
+in Obsidian verwenden. Geplante, umgesetzte und geprüfte Ergebnisse werden
+getrennt festgehalten. Einstieg in die Anwendung: [README](../README.md).
