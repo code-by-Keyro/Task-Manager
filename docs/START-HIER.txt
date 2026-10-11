@@ -1,0 +1,27 @@
+TASK-MANAGER 0.11.0 – RUST – CACHYOS / LINUX (x86_64)
+
+1. Entpacke dieses Paket im Dateimanager.
+2. Öffne die Datei Task-Manager per Doppelklick.
+   Falls nötig: Eigenschaften → Berechtigungen → als Programm ausführbar.
+   Wähle bei einer Rückfrage des Dateimanagers „Ausführen“.
+3. In der App: Datei → Für meinen Benutzer installieren.
+4. Danach findest du Task-Manager im App-Menü.
+
+Keine Python-, Qt- oder Rust-Installation nötig. Kein Terminal nötig.
+Benötigt eine grafische Linux-Sitzung (Wayland/X11) und OpenGL/EGL.
+Auf CachyOS x86_64 gebaut und getestet. Andere Distributionen nicht verifiziert.
+
+Optional im Terminal: ./Task-Manager
+Nach Installation: ~/.local/bin/task-manager
+Wenn ~/.local/bin im PATH steht: task-manager
+Grafische Installation: ./Task-Manager --install
+Deinstallation: Datei → Deinstallieren
+
+Quellcode: beiliegendes source.tar.gz. Lizenzen: licenses/ und THIRD_PARTY.md.
+
+SPRACHE: Deutsch oder Englisch anhand der Linux-Sitzung.
+Eigene Sprachen: ~/.config/linux-task-manager/languages.json bearbeiten, App neu starten.
+Details: docs/Sprachen.md im Quellcodearchiv.
+
+Sprachvorlage ab 0.12.1: englische Schlüssel und erster en-Block in der Config.
+Werte rechts übersetzen; Anleitungen: docs/Sprachen.md und docs/Languages.md.

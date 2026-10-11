@@ -1,0 +1,56 @@
+# Rust-Build und lokaler Cargo-Cache (Cargo.lock bleibt versioniert)
+/target/
+/.cargo-home/
+
+# Generierte Pakete, Testausgaben und lokale Versions-/Quellarchive
+/build/
+/dist/
+/release/
+/artifacts/
+/Archiv/
+
+# Python-Vorgängerversion: Umgebungen, Caches und PyInstaller-Ausgaben
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+/Task-Manager.spec
+/legacy/python/Task-Manager.spec
+/legacy/python/build/
+/legacy/python/dist/
+/legacy/python/release/
+
+# Lokale Abhängigkeiten des Node.js-Buildwerkzeugs
+node_modules/
+
+# ProjectAtlas-Index und persönliche Agenten-/Zugangskonfiguration
+/.projectatlas/
+/.mcp.json
+/.agents/
+/.aws/
+/.codex/
+
+# Lokale Geheimnisse; bereinigte Beispielkonfigurationen dürfen ins Repository
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Obsidian: nur persönlicher Arbeitszustand; Notizen/Anhänge/Settings behalten
+/Vault/.obsidian/workspace*.json
+/Vault/.obsidian/cache/
+/Vault/.trash/
+
+# Temporäre Editor- und Dateimanagerdateien
+*~
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Absichtlich KEINE globalen Ausschlüsse für *.lock, *.json, *.png oder *.txt:
+# Cargo.lock, config/languages.json, Vault-Nachweise und Lizenzen gehören in Git.

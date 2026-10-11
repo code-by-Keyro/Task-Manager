@@ -1,0 +1,31 @@
+[package]
+name = "linux-task-manager"
+version = "0.12.1"
+edition = "2024"
+rust-version = "1.88"
+description = "Nativer Rust-Task-Manager für CachyOS und Linux"
+license = "MIT"
+
+[[bin]]
+name = "task-manager"
+path = "src/main.rs"
+
+[dependencies]
+eframe = { version = "=0.33.3", default-features = false, features = ["default_fonts", "glow", "wayland", "x11"] }
+egui_extras = { version = "=0.33.3", default-features = false }
+libc = "0.2"
+png = "0.18"
+shell-words = "1.1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+wayland-client = "=0.31.15"
+wayland-protocols-plasma = { version = "=0.3.12", features = ["client"] }
+x11rb = "=0.13.2"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
