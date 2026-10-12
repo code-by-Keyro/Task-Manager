@@ -20,3 +20,11 @@ OpenGL/EGL. Kein Windows-, macOS- oder ARM-Paket.
 Die automatisch erzeugten „Source code“-Downloads enthalten ausschließlich Quellen.
 
 Zurück: [Projektwissen](../Start.md).
+
+## Veröffentlichung geprüft
+
+Release v0.12.1 ist öffentlich als neuester Release verfügbar. Tag zeigt auf
+Quellcommit `573af73fa7c5f92958c92cec510949b1454de2da`. Anwendung und SHA-256-Datei
+als eigene Assets hochgeladen. Die Anwendung erneut über die öffentliche URL
+heruntergeladen; Archiv und enthaltenes getestetes Binary sind bytegleich.
+SHA-256: `11c15c14518bece9caa1af28933d8b47cb72e8f1ccca1a4ade1fa3bb90865e5d`.

@@ -11,7 +11,7 @@
 ## Noch offen
 
 - [x] Öffentliches Linux-x86_64-Anwendungspaket aus bereinigten Quellen bauen und prüfen.
-- [ ] Geprüftes Anwendungspaket mit SHA-256 auf GitHub als Release veröffentlichen.
+- [x] Geprüftes Anwendungspaket mit SHA-256 als [Release v0.12.1](https://github.com/code-by-Keyro/Task-Manager/releases/tag/v0.12.1) veröffentlichen und Download vergleichen.
 - [ ] NVIDIA-/Intel-Messwerte auf entsprechender realer Hardware prüfen.
 - [ ] X11-Fensterzuordnung und hohe Skalierung real prüfen.
 - [ ] Hotplug von Laufwerken und GPUs während der Nutzung prüfen.
