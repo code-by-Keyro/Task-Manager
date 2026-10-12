@@ -1,220 +1,242 @@
-<img src="assets/task-manager.svg" alt="Task-Manager" width="64">
+<div align="center">
+
+<img src="assets/task-manager.svg" width="96" alt="Task-Manager icon">
 
 # Task-Manager for Linux
 
+A native Linux desktop task manager with a Windows 10 inspired interface, built with Rust and egui.
+
+[![Release](https://img.shields.io/github/v/release/code-by-Keyro/Task-Manager?label=release)](https://github.com/code-by-Keyro/Task-Manager/releases/latest)
+[![Platform: Linux x86_64](https://img.shields.io/badge/platform-Linux_x86__64-blue)](https://github.com/code-by-Keyro/Task-Manager/releases)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+**[Download the application](https://github.com/code-by-Keyro/Task-Manager/releases/download/v0.12.1/Task-Manager-0.12.1-Rust-Linux-x86_64.tar.gz) · [All releases](https://github.com/code-by-Keyro/Task-Manager/releases) · [Documentation](Vault/Start.md)**
+
 [English](#english) · [Deutsch](#deutsch)
+
+</div>
 
 ## English
 
-A native desktop task manager for Linux, written in **Rust** with
-**egui/eframe**. Monitor processes, hardware and system performance in a
-Windows 10 inspired interface, with dark mode and configurable translations.
-
-**Version: 0.12.1 · Linux x86_64 · MIT license**
-
 ### Features
 
-- **Processes:** Applications and background processes, search, sorting,
-  user filters, CPU/RAM/I/O metrics and process details.
-- **Performance:** Total CPU load and individual logical processors, memory,
-  GPU, physical disks, networking, temperatures and system uptime.
-- **Docker:** Containers and Compose projects with resource metrics; confirmed
-  stop and restart actions through the existing Docker CLI.
-- **Optimization:** Analyze running programs and estimate potential CPU/RAM
-  savings; terminate selected processes only after confirmation.
-- **Apps and drivers:** View installed applications and kernel modules;
-  Pacman/Flatpak package actions and confirmed system updates.
-- **Appearance:** Light interface, saved dark mode, German and English,
-  and custom translations through JSON.
+| View | What it provides |
+| --- | --- |
+| Processes | Applications and background processes, expandable groups, search, sorting, user filters and CPU/RAM/I/O metrics |
+| Performance | Total and per-logical-processor CPU load, memory, physical disks, network, GPU, temperatures and uptime |
+| Details | Individual processes, user, threads and a copyable command line |
+| Docker | Containers and Compose projects, status, resource metrics, confirmed stop/restart actions |
+| Optimization | Analysis of running programs and estimated CPU/RAM savings; selected termination after confirmation |
+| Installed apps | Application inventory, Pacman/Flatpak metadata and confirmed uninstall actions |
+| Drivers | Kernel modules, package update checks and confirmed system updates |
 
-Process, container and package actions use existing user permissions and
-require confirmation. The app does not perform these actions automatically.
+Light and dark themes, German/English UI and custom JSON translations are included.
+Process, container and package actions require confirmation and use existing
+permissions. Missing measurements stay marked as unknown.
 
-### Build and run
+### Download and installation
 
-This repository contains the source code. A prebuilt binary package has
-not yet been published on GitHub.
+Download the **application archive** from [Releases](https://github.com/code-by-Keyro/Task-Manager/releases/latest).
+GitHub's automatically generated “Source code” downloads contain sources only.
 
-Requirements: **Linux**, **Rust 1.88 or newer**, a C linker, `pkg-config`
-and the usual Linux desktop libraries. The window requires a Wayland or X11
-session and an OpenGL/EGL driver.
+| Package | Purpose |
+| --- | --- |
+| [Task-Manager-0.12.1-Rust-Linux-x86_64.tar.gz](https://github.com/code-by-Keyro/Task-Manager/releases/download/v0.12.1/Task-Manager-0.12.1-Rust-Linux-x86_64.tar.gz) | Ready-to-run Linux application, licenses, start instructions and source archive |
+| [SHA-256 checksum](https://github.com/code-by-Keyro/Task-Manager/releases/download/v0.12.1/Task-Manager-0.12.1-Rust-Linux-x86_64.tar.gz.sha256) | Verify the downloaded application archive |
+
+1. Extract the application archive in your file manager.
+2. Open the extracted folder and double-click **Task-Manager**. If prompted, enable
+   executable permissions in the file properties and choose **Run**.
+3. Optional: select **File → Install for my user …** in the app to add an application
+   menu entry. Per-user installation does not require administrator permissions.
+
+No Rust, Python or Qt installation is needed to run the downloaded application.
+The prebuilt package targets **Linux x86_64 with glibc 2.43 or newer**, a Wayland/X11
+session and an OpenGL/EGL driver. Built and tested on CachyOS/Arch Linux.
+Other distributions and ARM binaries have not been verified.
+
+Optional checksum check, with the archive and checksum file in the same folder:
+
+```bash
+sha256sum -c Task-Manager-0.12.1-Rust-Linux-x86_64.tar.gz.sha256
+```
+
+### Usage
+
+From the extracted application folder:
+
+```bash
+./Task-Manager                       # Start the GUI
+./Task-Manager --view cpu --dark     # Open the CPU view in dark mode
+./Task-Manager --check               # Read system metrics without a window
+./Task-Manager --help                # Show all CLI options
+```
+
+| Shortcut | Action |
+| --- | --- |
+| `F5` | Refresh |
+| `Ctrl+N` | Open the run-program dialog |
+| `Ctrl+Q` | Close the app when no package transaction is active |
+
+The session language is detected at startup. Customize translations or select a
+fixed language in `~/.config/linux-task-manager/languages.json`. Changes are preserved
+across updates. [English guide](docs/Languages.md) · [German guide](docs/Sprachen.md).
+
+### Platform notes
+
+- Metrics mainly come from Linux `/proc` and `/sys`. Process memory is RSS;
+  shared memory can be counted more than once.
+- AMD GPU metrics use sysfs; NVIDIA also uses an existing `nvidia-smi`.
+  Other drivers may provide fewer metrics. Intel GPU utilization through DRM fdinfo
+  is not implemented. Hardware support depends on readable driver interfaces.
+- Docker requires the existing Docker CLI and permissions. Package actions use
+  Pacman/Flatpak; driver update checks require `checkupdates` from `pacman-contrib`.
+  Online update checks and remote Docker contexts can use network connections.
+- Window detection uses Plasma on KDE Wayland and EWMH on X11, with an estimated
+  fallback. X11 detection, some NVIDIA/Intel hardware and hotplug still need real tests.
+- For a distribution with older glibc, build from source in its target environment.
+  Windows and macOS packages are not provided.
+
+### Build from source
+
+Requires Rust **1.88 or newer**, a C linker, `pkg-config` and Linux desktop libraries.
 
 ```bash
 git clone https://github.com/code-by-Keyro/Task-Manager.git
 cd Task-Manager
-cargo run --locked
-```
-
-For an optimized build:
-
-```bash
 cargo build --release --locked
 ./target/release/task-manager
 ```
 
-Choose **File → Install for my user …** in the app to add an application menu
-entry. Per-user installation does not require administrator permissions.
-Run `./target/release/task-manager --help` for all CLI options.
+`bash scripts/build-rust.sh` creates the Linux-x86_64 download package under
+`release/`. It also requires Node.js, `tar` and `sha256sum`.
 
-On Linux x86_64, `bash scripts/build-rust.sh` creates a download package in
-`release/`, including a source archive, licenses and a SHA-256 checksum.
-This also requires Node.js, `tar` and `sha256sum`.
+### Documentation and contributions
 
-### Language and appearance
+Read the [project guidelines](AGENTS.md) and [build/test guide](Vault/02%20Entwicklung/Build%20und%20Tests.md).
+The [public project vault](Vault/Start.md) documents architecture, decisions and
+pending checks; these notes are currently in German. It can also be opened in
+Obsidian. Private machine reports and deployment notes are excluded.
 
-The app detects the language of the Linux session at startup. German and
-English are included; English is the fallback for other languages. Custom
-translations and a fixed language selection are stored in
-`~/.config/linux-task-manager/languages.json`. Personal changes are preserved
-across updates. Use **View → Dark mode** to switch the appearance.
-
-Translation guides: [English](docs/Languages.md) · [Deutsch](docs/Sprachen.md).
-
-### Platform and metrics
-
-Developed and tested so far on **CachyOS/Arch Linux x86_64**. Other distributions,
-ARM, X11 window detection and some hardware configurations have not yet been
-fully verified.
-
-Linux metrics mainly come from `/proc` and `/sys`. GPU metrics depend on the
-driver; NVIDIA also uses an existing `nvidia-smi` installation. Missing metrics
-remain marked as unknown. Process RAM is RSS and may count shared memory more
-than once. Docker, package and driver features require the appropriate tools
-and permissions.
-
-### Documentation and development
-
-The [project vault](Vault/Start.md) contains selected public notes on
-[architecture](Vault/02%20Entwicklung/Architektur.md),
-[builds and tests](Vault/02%20Entwicklung/Build%20und%20Tests.md),
-[decisions](Vault/02%20Entwicklung/Entscheidungen.md) and
-[pending checks](Vault/03%20Planung/Aufgaben.md).
-These notes are currently in German. The Markdown files can be read directly
-on GitHub; `Vault/` can also be opened as an Obsidian vault. Personal installation
-notes and actual machine reports are kept outside the public documentation.
-
-Read the [project guidelines](AGENTS.md) before contributing. After application
-changes, run:
-
-```bash
-cargo fmt --check
-cargo clippy --all-targets -- -D warnings
-cargo test
-```
-
-The build guide in the vault describes additional CLI and graphical checks.
-Active code is in `src/`; `legacy/python/` contains the previous version
-as a development reference.
+After application changes, run `cargo fmt --check`,
+`cargo clippy --all-targets -- -D warnings` and `cargo test`.
+Active code is in `src/`; the previous Python version is kept in `legacy/python/`.
 
 ### License
 
-Original code: [MIT](LICENSE). Third-party library information:
-[THIRD_PARTY.md](THIRD_PARTY.md) and `licenses/`.
+Original code: [MIT](LICENSE). Third-party notices: [THIRD_PARTY.md](THIRD_PARTY.md)
+and the `licenses/` directory included in the application package.
 
 ---
 
 ## Deutsch
 
-Ein nativer Desktop-Task-Manager für Linux, geschrieben in **Rust** mit
-**egui/eframe**. Prozesse, Hardware und Systemleistung in einer Oberfläche im
-Stil von Windows 10 – mit Darkmode und konfigurierbaren Übersetzungen.
-
-**Stand: 0.12.1 · Linux x86_64 · MIT-Lizenz**
-
 ### Funktionen
 
-- **Prozesse:** Anwendungen und Hintergrundprozesse, Suche, Sortierung,
-  Benutzerfilter, CPU-/RAM-/E/A-Werte und Prozessdetails.
-- **Leistung:** CPU-Gesamtlast und einzelne logische Prozessoren, Arbeitsspeicher,
-  GPU, physische Datenträger, Netzwerk, Temperaturen und Systemlaufzeit.
-- **Docker:** Container und Compose-Projekte mit Ressourcenwerten; Stoppen und
-  Neustarten mit Rückfrage über die vorhandene Docker CLI.
-- **Optimierung:** Laufende Programme analysieren und geschätztes CPU-/RAM-Potenzial
-  anzeigen; ausgewählte Prozesse erst nach Bestätigung beenden.
-- **Apps und Treiber:** Installierte Anwendungen und Kernelmodule anzeigen;
-  Paketaktionen für Pacman/Flatpak und bestätigte Systemaktualisierung.
-- **Darstellung:** Helles Design, gespeicherter Darkmode, Deutsch und Englisch
-  sowie eigene Übersetzungen über JSON.
+| Ansicht | Inhalt |
+| --- | --- |
+| Prozesse | Anwendungen und Hintergrundprozesse, aufklappbare Gruppen, Suche, Sortierung, Benutzerfilter und CPU/RAM/E/A |
+| Leistung | CPU-Gesamtlast und logische Prozessoren, RAM, physische Laufwerke, Netzwerk, GPU, Temperaturen und Laufzeit |
+| Details | Einzelne Prozesse, Benutzer, Threads und kopierbare Befehlszeile |
+| Docker | Container und Compose-Projekte, Status, Ressourcen und bestätigtes Stoppen/Neustarten |
+| Optimierung | Analyse laufender Programme und geschätztes CPU/RAM-Potenzial; ausgewähltes Beenden mit Rückfrage |
+| Installierte Apps | App-Inventar, Pacman/Flatpak-Metadaten und bestätigte Deinstallation |
+| Treiber | Kernelmodule, Suche nach Paketupdates und bestätigte Systemaktualisierung |
 
-Prozess-, Container- und Paketaktionen verwenden die bestehenden Benutzerrechte
-und verlangen eine Bestätigung. Die App führt diese Aktionen nicht automatisch aus.
+Helles Design, Darkmode, Deutsch/Englisch und eigene JSON-Übersetzungen sind enthalten.
+Prozess-, Container- und Paketaktionen benötigen eine Bestätigung und vorhandene
+Berechtigungen. Fehlende Messwerte bleiben als unbekannt erkennbar.
 
-### Bauen und starten
+### Download und Installation
 
-Das Repository enthält die Quellen. Ein fertiges Binärpaket ist auf GitHub
-noch nicht veröffentlicht.
+Das **Anwendungspaket** steht unter [Releases](https://github.com/code-by-Keyro/Task-Manager/releases/latest).
+GitHubs automatisch erzeugte „Source code“-Downloads enthalten nur die Quellen.
 
-Voraussetzungen: **Linux**, **Rust 1.88 oder neuer**, ein C-Linker, `pkg-config`
-und die üblichen Linux-Desktop-Bibliotheken. Für das Fenster werden eine
-Wayland- oder X11-Sitzung und ein OpenGL-/EGL-Treiber benötigt.
+| Paket | Zweck |
+| --- | --- |
+| [Task-Manager-0.12.1-Rust-Linux-x86_64.tar.gz](https://github.com/code-by-Keyro/Task-Manager/releases/download/v0.12.1/Task-Manager-0.12.1-Rust-Linux-x86_64.tar.gz) | Startfertige Linux-Anwendung, Lizenzen, Startanleitungen und Quellarchiv |
+| [SHA-256-Prüfsumme](https://github.com/code-by-Keyro/Task-Manager/releases/download/v0.12.1/Task-Manager-0.12.1-Rust-Linux-x86_64.tar.gz.sha256) | Heruntergeladenes Anwendungspaket prüfen |
+
+1. Das Anwendungspaket im Dateimanager entpacken.
+2. Den entpackten Ordner öffnen und **Task-Manager** doppelklicken. Falls nötig:
+   Eigenschaften → Berechtigungen → als Programm ausführbar; **Ausführen** wählen.
+3. Optional in der App **Datei → Für meinen Benutzer installieren** wählen.
+   Die Benutzerinstallation legt einen App-Menü-Eintrag an und benötigt keine
+   Administratorrechte.
+
+Zum Starten der fertigen Anwendung werden weder Rust, Python noch Qt benötigt.
+Das Binärpaket benötigt **Linux x86_64 mit glibc 2.43 oder neuer**, eine Wayland/X11-
+Sitzung und einen OpenGL/EGL-Treiber. Auf CachyOS/Arch Linux gebaut und getestet.
+Andere Distributionen und ARM-Binärpakete sind nicht verifiziert.
+
+Optionale Prüfsummenkontrolle; Paket und Prüfsummendatei liegen im selben Ordner:
+
+```bash
+sha256sum -c Task-Manager-0.12.1-Rust-Linux-x86_64.tar.gz.sha256
+```
+
+### Nutzung
+
+Im entpackten Anwendungsordner:
+
+```bash
+./Task-Manager                       # Oberfläche starten
+./Task-Manager --view cpu --dark     # CPU-Ansicht im Darkmode öffnen
+./Task-Manager --check               # Systemmesswerte ohne Fenster lesen
+./Task-Manager --help                # Alle CLI-Optionen anzeigen
+```
+
+| Tastenkürzel | Aktion |
+| --- | --- |
+| `F5` | Aktualisieren |
+| `Strg+N` | Dialog zum Starten eines Programms öffnen |
+| `Strg+Q` | App schließen, wenn keine Pakettransaktion aktiv ist |
+
+Beim Start wird die Sitzungssprache erkannt. Übersetzungen und feste Sprachwahl
+stehen in `~/.config/linux-task-manager/languages.json`; Anpassungen bleiben bei
+Updates erhalten. [Deutsche Anleitung](docs/Sprachen.md) · [English guide](docs/Languages.md).
+
+### Plattformhinweise
+
+- Messwerte stammen überwiegend aus `/proc` und `/sys`. Prozess-RAM ist RSS;
+  gemeinsam genutzter Speicher kann mehrfach gezählt werden.
+- AMD-GPU-Werte kommen aus sysfs, NVIDIA verwendet zusätzlich `nvidia-smi`.
+  Andere Treiber liefern gegebenenfalls weniger Werte. Intel-GPU-Auslastung über
+  DRM-fdinfo ist nicht implementiert. Unterstützung hängt von lesbaren Treiberwerten ab.
+- Docker benötigt Docker CLI und Berechtigungen. Paketaktionen verwenden
+  Pacman/Flatpak, Treiber-Updateprüfungen `checkupdates` aus `pacman-contrib`.
+  Online-Updateprüfungen und entfernte Docker-Kontexte können Netzwerkzugriffe ausführen.
+- Fenstererkennung über Plasma unter KDE Wayland, EWMH unter X11 und geschätzten
+  Fallback. X11, bestimmte NVIDIA/Intel-Hardware und Hotplug benötigen weitere reale Tests.
+- Bei älterer glibc aus den Quellen in der Zielumgebung bauen.
+  Windows- und macOS-Pakete werden nicht angeboten.
+
+### Aus Quellen bauen
+
+Rust **1.88 oder neuer**, C-Linker, `pkg-config` und Linux-Desktop-Bibliotheken:
 
 ```bash
 git clone https://github.com/code-by-Keyro/Task-Manager.git
 cd Task-Manager
-cargo run --locked
-```
-
-Für einen optimierten Build:
-
-```bash
 cargo build --release --locked
 ./target/release/task-manager
 ```
 
-In der App lässt sich unter **Datei → Für meinen Benutzer installieren** ein
-App-Menü-Eintrag einrichten. Die Benutzerinstallation benötigt keine
-Administratorrechte. Alle CLI-Optionen zeigt `./target/release/task-manager --help`.
+`bash scripts/build-rust.sh` erzeugt das Linux-x86_64-Paket unter `release/`.
+Zusätzlich werden Node.js, `tar` und `sha256sum` benötigt.
 
-Das Skript `bash scripts/build-rust.sh` erzeugt auf Linux x86_64 ein Download-Paket
-unter `release/`, einschließlich Quellarchiv, Lizenzen und SHA-256-Prüfsumme.
-Dafür werden zusätzlich Node.js, `tar` und `sha256sum` benötigt.
+### Dokumentation und Beiträge
 
-### Sprache und Darstellung
+[Projektregeln](AGENTS.md) und [Build-/Testanleitung](Vault/02%20Entwicklung/Build%20und%20Tests.md)
+lesen. Der [öffentliche Vault](Vault/Start.md) dokumentiert Architektur,
+Entscheidungen und offene Prüfungen und kann in Obsidian geöffnet werden.
+Persönliche Rechnerberichte und Installationsnotizen bleiben ausgeschlossen.
 
-Beim Start wird die Sprache der Linux-Sitzung erkannt. Deutsch und Englisch
-sind enthalten; für weitere Sprachen gilt Englisch als Fallback. Eigene
-Übersetzungen und eine feste Sprachauswahl werden in
-`~/.config/linux-task-manager/languages.json` gespeichert. Persönliche Anpassungen
-bleiben bei Updates erhalten. **Ansicht → Darkmode** schaltet die Darstellung um.
-
-Anleitungen: [Deutsch](docs/Sprachen.md) · [English](docs/Languages.md).
-
-### Plattform und Messwerte
-
-Entwickelt und bisher auf **CachyOS/Arch Linux x86_64** geprüft. Andere
-Distributionen, ARM, X11-Fensterzuordnung und einzelne Hardwarekonfigurationen
-sind noch nicht vollständig verifiziert.
-
-Linux-Messwerte stammen überwiegend aus `/proc` und `/sys`. GPU-Werte hängen
-vom Treiber ab; NVIDIA verwendet zusätzlich eine vorhandene `nvidia-smi`.
-Fehlende Messwerte bleiben als unbekannt erkennbar. Prozess-RAM ist RSS und
-kann gemeinsam genutzten Speicher mehrfach enthalten. Docker-, Paket- und
-Treiberfunktionen benötigen die passenden Werkzeuge und Berechtigungen.
-
-### Dokumentation und Entwicklung
-
-Der [Projekt-Vault](Vault/Start.md) enthält ausgewählte öffentliche Notizen zu
-[Architektur](Vault/02%20Entwicklung/Architektur.md),
-[Build und Tests](Vault/02%20Entwicklung/Build%20und%20Tests.md),
-[Entscheidungen](Vault/02%20Entwicklung/Entscheidungen.md) und
-[offenen Prüfungen](Vault/03%20Planung/Aufgaben.md).
-Die Markdown-Dateien sind direkt auf GitHub lesbar; `Vault/` kann außerdem als
-Obsidian-Vault geöffnet werden. Persönliche Installationsnotizen und reale
-Rechnerberichte gehören nicht zur öffentlichen Dokumentation.
-
-Vor Beiträgen die [Projektregeln](AGENTS.md) lesen. Nach Anwendungsänderungen:
-
-```bash
-cargo fmt --check
-cargo clippy --all-targets -- -D warnings
-cargo test
-```
-
-Weitere CLI- und grafische Prüfungen beschreibt die Build-Anleitung im Vault.
-Aktiver Code liegt in `src/`; `legacy/python/` enthält die Vorgängerversion
-als Entwicklungsreferenz.
+Nach Anwendungsänderungen `cargo fmt --check`,
+`cargo clippy --all-targets -- -D warnings` und `cargo test` ausführen.
+Aktiver Code liegt in `src/`, der Python-Vorgänger in `legacy/python/`.
 
 ### Lizenz
 
-Eigener Code: [MIT](LICENSE). Hinweise zu Drittanbieter-Bibliotheken:
-[THIRD_PARTY.md](THIRD_PARTY.md) und `licenses/`.
+Eigener Code: [MIT](LICENSE). Drittanbieter-Hinweise: [THIRD_PARTY.md](THIRD_PARTY.md)
+und das Verzeichnis `licenses/` im Anwendungspaket.

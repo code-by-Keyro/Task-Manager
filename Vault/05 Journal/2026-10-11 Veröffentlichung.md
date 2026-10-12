@@ -19,6 +19,6 @@ Der ausgewählte öffentliche Vault bleibt als Entwicklungswissen erhalten;
 seine Verweise sind als normale Markdown-Links auf GitHub nutzbar.
 
 Für Export und Dokumentationspflege wurden keine neuen Anwendungs-/GUI-Tests
-oder Release-Builds ausgeführt. Ein fertiges Binärpaket ist noch nicht veröffentlicht.
+oder Release-Builds ausgeführt. Zum Zeitpunkt dieses Exports war noch kein fertiges Binärpaket veröffentlicht.
 
 Zurück: [Projektwissen](../Start.md).

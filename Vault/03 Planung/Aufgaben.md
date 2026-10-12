@@ -10,8 +10,8 @@
 
 ## Noch offen
 
-- [ ] Fertiges öffentliches Linux-x86_64-Download-Paket aus den bereinigten Quellen
-  bauen, prüfen und veröffentlichen.
+- [x] Öffentliches Linux-x86_64-Anwendungspaket aus bereinigten Quellen bauen und prüfen.
+- [ ] Geprüftes Anwendungspaket mit SHA-256 auf GitHub als Release veröffentlichen.
 - [ ] NVIDIA-/Intel-Messwerte auf entsprechender realer Hardware prüfen.
 - [ ] X11-Fensterzuordnung und hohe Skalierung real prüfen.
 - [ ] Hotplug von Laufwerken und GPUs während der Nutzung prüfen.

@@ -12,6 +12,7 @@ außerhalb des öffentlichen Repositorys.
 | Voraussetzungen und Prüfungen | [Build und Tests](02%20Entwicklung/Build%20und%20Tests.md) |
 | Technische Entscheidungen | [Entscheidungen](02%20Entwicklung/Entscheidungen.md) |
 | Noch offene Prüfungen | [Aufgaben](03%20Planung/Aufgaben.md) |
+| Anwendungspaket und Download | [Release 0.12.1](05%20Journal/2026-10-12%20%C3%96ffentlicher%20Release.md) |
 | Öffentliche Quellfassung | [Veröffentlichung](05%20Journal/2026-10-11%20Ver%C3%B6ffentlichung.md) |
 
 Die Dateien lassen sich auf GitHub lesen oder über **Ordner als Vault öffnen**
